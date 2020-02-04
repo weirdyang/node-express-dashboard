@@ -1,0 +1,40 @@
+{
+  "name": "log-dashboard",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www & node ./log-generator/log-generator.js",
+    "test": "cross-env NODE_ENV=test mocha --exit './test/**/*.spec.js' || true"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "express-validator": "^6.2.0",
+    "http-errors": "~1.6.3",
+    "lodash": "^4.17.15",
+    "morgan": "~1.9.1",
+    "ws": "^7.2.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "cross-env": "^6.0.3",
+    "mocha": "^6.2.2",
+    "rewire": "^4.0.1",
+    "sinon": "^7.5.0",
+    "sinon-chai": "^3.3.0",
+    "sinon-express-mock": "^2.2.1",
+    "supertest": "^4.0.2"
+  },
+  "mocha": {
+    "require": "./test/globals",
+    "exit": true,
+    "diff": true,
+    "opts": false,
+    "reporter": "spec",
+    "timeout": 10000,
+    "ui": "bdd",
+    "watch-files": ["./test/**/*.spec.js"]
+  }
+}

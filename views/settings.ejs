@@ -1,0 +1,53 @@
+<%- include('header') %>
+
+  <div class="container">
+    <h1><%= title %></h1>
+    <a href='/'>Home</a><br>
+
+    <% if (locals.errors) { %>
+      <div class="alert alert-danger alert-dismissible">
+        <%= errors.msg %>
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      </div>
+    <% } %>
+
+    <% if (locals.message) { %>
+      <div class="alert alert-success alert-dismissible">
+        <%= message %>
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      </div>
+    <% } %>
+
+  </div>
+
+  <form id="settingsForm" class="container" method="POST" action="/settings">
+    <div class="form-check">
+      <label>Sort Order:</label><br>
+      <input class="form-check-input" type="radio" name="sortOrder" id="newestRadio" value="newestFirst" 
+        <%- settings.user.sortOrder === "newestFirst" ? "checked" : "" %>
+      >
+      <label class="form-check-label" for="newestRadio">
+        Newest First
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="sortOrder" id="oldestRadio" value="oldestFirst"
+        <%- settings.user.sortOrder === "oldestFirst" ? "checked" : "" %>
+      >
+      <label class="form-check-label" for="oldestRadio">
+        Oldest First
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="defaultDir">Default Directory:</label>
+      <input type="text" class="form-control" name="defaultDir" aria-describedby="defaultDir" value=<%= settings.user.defaultDir %>>
+      <small id="defaultDirHelp" class="form-text text-muted">The absolute directory path</small><br>
+    </div>
+    <div class="form-group">
+      <label for="defaultFilter">Default Filter:</label>
+      <input type="text" class="form-control" name="defaultFilter" value=<%= settings.user.defaultFilter %>>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+<%- include('footer') %>
