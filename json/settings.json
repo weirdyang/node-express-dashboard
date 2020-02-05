@@ -1,8 +1,9 @@
 {
   "user": {
     "sortOrder": "newestFirst",
-    "dirUser": "tyler",
+    "dirUser": "",
+    "defaultDir": "",
     "dirPassword": "",
-    "defaultFilter": "cool"
+    "defaultFilter": ""
   }
 }
