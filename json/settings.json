@@ -4,6 +4,6 @@
     "dirUser": "",
     "defaultDir": "",
     "dirPassword": "",
-    "defaultFilter": ""
+    "defaultFilter": "POST"
   }
 }

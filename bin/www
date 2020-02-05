@@ -40,11 +40,13 @@ wss.on('connection', (ws) => {
     var filePath = message
     fs.watch(filePath, (eventType, filename) => {
       fs.createReadStream(filePath).on("data", chunk => {
-        var lines = chunk.toString().split("\n")
-        var filteredLogs = lines.filter(line => !line.includes(settings.user.defaultFilter))
+        var logs = chunk.toString().split("\n")
+        if (settings.user.defaultFilter) {
+          logs = logs.filter(line => !line.includes(settings.user.defaultFilter))
+        }
         // Default to newestFirst. Reverse the array so we're sending the newest entries first
-        filteredLogs = settings.user.sortOrder === "oldestFirst" ? filteredLogs : filteredLogs.reverse()
-        ws.send(filteredLogs.toString().split(",").join("\n"))
+        logs = settings.user.sortOrder === "oldestFirst" ? logs : logs.reverse()
+        ws.send(logs.toString().split(",").join("\n"))
       })
     })
   });
