@@ -35,7 +35,6 @@ router.post('/settings', [
   if (!errors.isEmpty()) {
     return res.render('settings', { title: 'Settings', errors: errors.array()[0], settings });
   }
-  const body = req.body
   settings.user = req.body
   writeSettings()
   res.render('settings', { message: 'Settings Saved', title: 'Settings', settings });
