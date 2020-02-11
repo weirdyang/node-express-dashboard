@@ -25,7 +25,8 @@
     "sinon": "^7.5.0",
     "sinon-chai": "^3.3.0",
     "sinon-express-mock": "^2.2.1",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "ramda": "0.27.0"
   },
   "mocha": {
     "require": "./test/globals",
@@ -35,6 +36,8 @@
     "reporter": "spec",
     "timeout": 10000,
     "ui": "bdd",
-    "watch-files": ["./test/**/*.spec.js"]
+    "watch-files": [
+      "./test/**/*.spec.js"
+    ]
   }
 }
