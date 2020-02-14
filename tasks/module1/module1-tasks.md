@@ -1,13 +1,22 @@
-# Configure Websockets on the server
+# Configuring Websockets on the server
 
 ## Install the ws npm dependency
 TASK 1:
-In the `package.json` file in the 
+In the terminal at the root of the project, run the command `npm install ws`. 
+Running that command will add an entry for `ws` in the `package.json` file 
+and install the `ws` library in `node_modules`.
 
 ## Require the ws library
 TASK 2:
-In `bin/www` require the built-in Node library `ws` and store a reference to it in a const called `WebSocket`.
+In `bin/www` require the built-in Node library `ws` and store a reference to it 
+in a `const` called `WebSocket`.
 
+## Create a Websocket using the existing Express server configuration
+Task 3: 
+In `bin/www` create a `const` called `wss` and assign it to a new 
+`WebSocket.Server` instance. The `WebSocket.Server` constructor requires a
+`WebSocket.ServerOptions` object. Use the existing Express `server` variable
+for the `WebSocket.ServerOptions` object's `server` property.
 
 
 
@@ -18,14 +27,18 @@ In `bin/www` require the built-in Node library `ws` and store a reference to it 
 ## Add a log viewer panel
 TASK 1:
 In the `views/index.ejs`  file complete the following:
-* Inside the existing `div` with class `container` below the title header, add another `div` element with classes of `panel` and `panel-default`.
-* Inside the `div` created above, add another `div` with a class of `panel-heading`. For the `div` content add the text `"Log Viewer"`.
+* Inside the existing `div` with class `container` below the title header, add another `div` 
+  element with classes of `panel` and `panel-default`.
+* Inside the `div` created above, add another `div` with a class of `panel-heading`. 
+  For the `div` content add the text `"Log Viewer"`.
 * Inside the `div` with classes `panel` and `panel-default` and below the div.
 
 ## Create the log viewer javascript file
 TASK 2:
-At the root of the project create a directory called `public`. Inside that directory create a directory called `javascripts`.
+At the root of the project create a directory called `public`. Inside that directory 
+create a directory called `javascripts`.
 Inside the `public/javascripts` directory create a file called `log-viewer.js`
+
 
 
 
