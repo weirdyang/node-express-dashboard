@@ -1,5 +1,5 @@
-describe('Require `ws` module', () => {
-  it('should contain ws require @app-require-ws', () => {
+describe('bin/www', () => {
+  it('should contain ws require @www-require-ws', () => {
     let wss;
     try {
       wss = wwwModule.__get__('WebSocket');
