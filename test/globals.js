@@ -23,7 +23,6 @@ try {
 
 const wwwModule = rewire(path.join(process.cwd(), 'bin/www'));
 
-
 const getRouteMethods = route => {
   const methods = [];
   for (const method in route.methods) {
