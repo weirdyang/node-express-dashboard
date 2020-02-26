@@ -15,7 +15,7 @@ for the `options` object's `server` property.
 TASK: 3
 In `bin/www` after the `server.listen()` and `server.on()` function calls, add a listener for the WebSocket server "connection" event. Do this by invoking the `wss.on()` function and passing the string "connection" as the first argument and a callback function as the second argument with `ws` as the callback's single parameter.
 
-## Register a listener for the WebSocket server "connection" event's "message" event
+## Register a listener for the WebSocket "message" event
 TASK: 4
 In `bin/www` inside the callback for the `wss` "connection" event, add a listener for the "message" event of the `ws` callback parameter added in the previous step. Do this by invoking the `ws.on()` function passing the string "message" as the first argument and a callback function as the second argument with `message` as the callback's single parameter.
 

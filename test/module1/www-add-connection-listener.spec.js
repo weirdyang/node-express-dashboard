@@ -26,8 +26,41 @@ describe('bin/www', () => {
   //   });
   // });
 
+  // const wss = ast.findVariable('wss');
+  // const drop = ast.findCall('forEach').findLiteral('drop');
+  // const eventParamDrop = findEventParam(drop);
+
   it('should contain wss "connection" listener @www-add-connection-listener.spec', () => {
-    assert.fail()
+  //   const drag_start = wss.findLiteral('dragstart');
+  //   const drag_start_match = {
+  //     'callee.object.name': 'item',
+  //     'callee.property.name': 'addEventListener',
+  //   };
+  //   assert(matchObj(drag_start, drag_start_match), 'Are you adding an event listener to `item` that listens for the `dragstart` event?');
+
+  //   const drag_start_handler_arrow = { 
+  //     'arguments.1.type': 'ArrowFunctionExpression',
+  //     'arguments.1.params.0.name': 'event'
+  //   };
+  //   const drag_start_handler_function = { 
+  //     'arguments.1.type': 'FunctionExpression',
+  //     'arguments.1.params.0.name': 'event'
+  //   };
+  //   assert(matchObj(drag_start, drag_start_handler_arrow) || matchObj(drag_start, drag_start_handler_function), 'Do you have a `dragend` handler function?');
+
+  //   const set_data = drag_start.findCall('setData');
+  //   const set_data_match = {
+  //     'callee.object.object.name': 'event',
+  //     'callee.object.property.name': 'dataTransfer',
+  //     'callee.property.name': 'setData',
+  //     'arguments.0.value': 'text',
+  //     'arguments.1.object.object.name': 'event',
+  //     'arguments.1.object.property.name': 'target',
+  //     'arguments.1.property.name': 'id'
+  //   };
+  //   assert(matchObj(set_data, set_data_match), 'In the `dragstart` event handler are you setting the `text` of the `dataTransfer` to `event.target.id`?');
+
+
     // assert(onStub.calledOnce, '`wss.on` has not been called.')
     // assert(
     //   listenStub.calledWithExactly("connection", sinon.match.func),

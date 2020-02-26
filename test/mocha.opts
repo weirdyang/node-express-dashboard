@@ -1,5 +1,0 @@
-
---ui bdd
---timeout 10000
---exit
---require ./test/globals
