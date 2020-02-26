@@ -6,6 +6,7 @@ const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 const { mockReq, mockRes } = require('sinon-express-mock');
 const jscs = require('jscodeshift');
+const dot = require('dot-object');
 
 const packageFile = require("../package.json")
 
