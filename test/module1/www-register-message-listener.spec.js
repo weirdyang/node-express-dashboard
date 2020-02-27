@@ -1,6 +1,12 @@
 describe('bin/www', () => {
   it('should contain ws "message" listener @www-register-message-listener', () => {
     const connection = ast.findLiteral('connection');
+    try {
+      connection.findCall("on")
+    }
+    catch {
+      assert.fail("No `connection` parent listener for `message` listener")
+    }
     const message = connection.findCall('on');
     const messageMatch = {
       'callee.object.name': 'ws',
