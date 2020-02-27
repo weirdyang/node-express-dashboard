@@ -110,5 +110,4 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
-  console.log('Log Dashboard project is running on ' + bind + "!");
 }
