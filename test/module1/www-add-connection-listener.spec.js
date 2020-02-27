@@ -1,5 +1,5 @@
 describe('bin/www', () => {
-  it('should contain wss "connection" listener @www-add-connection-listener.spec', () => {
+  it('should contain wss "connection" listener @www-add-connection-listener', () => {
     const connection = ast.findLiteral('connection');
     const wssOnMatch = {
       'callee.object.name': 'wss',

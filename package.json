@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www & node ./log-generator/log-generator.js",
+    "start": "DEBUG=log-dashboard:server node ./bin/www & node ./log-generator/log-generator.js",
     "test:module1": "cross-env NODE_ENV=test mocha --exit './test/module1/*.spec.js' || true"
   },
   "dependencies": {
