@@ -22,24 +22,3 @@ In `bin/www` inside the callback for the `wss` "connection" event, add a listene
 ## Send a simple WebSocket echo message to the client
 TASK: 5
 In `bin/www` inside the `ws.on("message", ...)` callback, add an echo back to the client. Do this by calling the `ws.send()` function and passing a string such as "Hello from the server!" with the `message` appended to the end. The string should evaluate to something like "Hello from the server! You sent: Hello from the client".
-
-
-
-
-# Adding the Websocket-based log viewer window
-
-## Add a log viewer panel
-TASK 1:
-In the `views/index.ejs`  file complete the following:
-* Inside the existing `div` with class `container` below the title header, add another `div` 
-  element with classes of `panel` and `panel-default`.
-* Inside the `div` created above, add another `div` with a class of `panel-heading`. 
-  For the `div` content add the text `"Log Viewer"`.
-* Inside the `div` with classes `panel` and `panel-default` and below the div.
-
-## Create the log viewer javascript file
-TASK 2:
-At the root of the project create a directory called `public`. Inside that directory 
-create a directory called `javascripts`.
-Inside the `public/javascripts` directory create a file called `log-viewer.js`
-
