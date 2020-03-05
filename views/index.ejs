@@ -1,10 +1,10 @@
-<%- include('header') %>
+<%- include("header") %>
 
   <div class="container">
     <h1><%= title %></h1>
-    <a href='/select-file'>Select File</a>
+    <a href="/select-file">Select File</a>
     <br>
-    <a href='/settings'>Settings</a>
+    <a href="/settings">Settings</a>
 
     <input type="hidden" id="logFilePath" value="<%= logFile %>">
     <div class="panel panel-default">
@@ -14,4 +14,4 @@
   </div>
   <script src="/javascripts/log-viewer.js"></script>
 
-<%- include('footer') %>
+<%- include("footer") %>

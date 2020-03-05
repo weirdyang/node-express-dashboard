@@ -1,8 +1,8 @@
-<%- include('header') %>
+<%- include("header") %>
 
   <div class="container">
     <h1><%= title %></h1>
-    <a href='/'>Home</a><br>
+    <a href="/">Home</a><br>
 
     <% if (locals.errors) { %>
       <div class="alert alert-danger alert-dismissible">
@@ -50,4 +50,4 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 
-<%- include('footer') %>
+<%- include("footer") %>

@@ -1,7 +1,7 @@
-const url = 'ws://localhost:3000'
+const url = "ws://localhost:3000"
 const connection = new WebSocket(url)
-const logWindow = document.querySelector('#log-window')
-var filePath = document.getElementById("logFilePath").value;
+const logWindow = document.querySelector("#log-window")
+const filePath = document.getElementById("logFilePath").value;
 
 connection.onopen = () => {
   if (filePath) {
@@ -14,6 +14,6 @@ connection.onerror = (error) => {
 }
 
 connection.onmessage = (e) => {
-  var logs = e.data.split("\n").join("<br>")
+  const logs = e.data.split("\n").join("<br>")
   logWindow.innerHTML = `<br>${logs}<br>`
 }

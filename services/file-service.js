@@ -1,6 +1,6 @@
-const fs = require('fs');
-const _ = require('lodash');
-const path = require('path');
+const fs = require("fs");
+const _ = require("lodash");
+const path = require("path");
 
 let dir;
 
@@ -43,7 +43,7 @@ function readDir(currentDir, res, query) {
 
 exports.get = function(req, res) {
   let currentDir = dir;
-  let query = req.query.path || '';
+  let query = req.query.path || "";
   if (query) {
     currentDir = path.join(currentDir, query)
   } 

@@ -1,12 +1,12 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-const settingsData = fs.readFileSync(path.join(__dirname, '../json/settings.json'), 'utf8');
-var settings = JSON.parse(settingsData);
+const settingsData = fs.readFileSync(path.join(__dirname, "../json/settings.json"), "utf8");
+const settings = JSON.parse(settingsData);
 
 const writeSettings = () => {
     let settingsJSON = JSON.stringify(settings, null, 2)
-    fs.writeFileSync(path.join(__dirname, '../json/settings.json'), settingsJSON, 'utf8');
+    fs.writeFileSync(path.join(__dirname, "../json/settings.json"), settingsJSON, "utf8");
 }
 
 function getDefaultDir() {

@@ -1,7 +1,7 @@
 $(document).ready(function(){
   
-  var currentPath = null;
-  var options = {
+  const currentPath = null;
+  const options = {
     "paging": false,
     "autoWidth": false,
     "scrollY": "250px",
@@ -14,13 +14,13 @@ $(document).ready(function(){
     ]
   };
 
-  var table = $("#fileTable").DataTable(options);
+  const table = $("#fileTable").DataTable(options);
 
   function onRowCreated(row, data, dataIndex) {
     if (!data.isDirectory) return;
-    var path = data.path;
+    const path = data.path;
     $(row).bind("click", function(event){
-       $.get('/files?path='+ path).then(function(data){
+       $.get("/files?path=" + path).then(function(data){
         table.clear();
         table.rows.add(data).draw();
         currentPath = path;
@@ -41,16 +41,16 @@ $(document).ready(function(){
     }
   }
 
-  $.get('/files').then(function(data){
+  $.get("/files").then(function(data){
     table.clear();
     table.rows.add(data).draw();
   });
 
   $("#back").bind("click", function(e){
     if (!currentPath) return;
-    var idx = currentPath.lastIndexOf("/");
-    var path = currentPath.substr(0, idx);
-    $.get('/files?path='+ path).then(function(data){
+    const idx = currentPath.lastIndexOf("/");
+    const path = currentPath.substr(0, idx);
+    $.get("/files?path="+ path).then(function(data){
       table.clear();
       table.rows.add(data).draw();
       currentPath = path;
