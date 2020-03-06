@@ -1,8 +1,11 @@
-const source = fs.readFileSync(path.join(process.cwd(), 'public/javascripts/log-viewer.js'), 'utf8');
-const logViewer = jscs(source);
-
 describe('log-viewer.js', () => {
   it('should send a message to the WebSocket server @log-viewer-send-message', () => {
+    assert(fs.existsSync(path.join(process.cwd(), "public/javascripts/log-viewer.js")),
+    'Have you created the `log-viewer.js` file in `public/javascripts`?')
+
+    const source = fs.readFileSync(path.join(process.cwd(), 'public/javascripts/log-viewer.js'), 'utf8');
+    const logViewer = jscs(source);
+    
     const onopen = logViewer.findPropertyAssignment('connection', 'onopen');
     const onopenAssignmentMatch = {
       "operator": "=",
