@@ -3,34 +3,33 @@ const logViewer = jscs(source);
 
 describe('log-viewer.js', () => {
   it('should send a message to the WebSocket server @log-viewer-send-message', () => {
-    // const connection = logViewer.findVariable('connection');
-    // const logWindowMatch = {
-    //   'init.callee.object.name': 'document',
-    //   'init.callee.property.name': 'querySelector',
-    //   'init.arguments.0.value': '#log-window'
-    // };
-    // assert(matchObj(connection, logWindowMatch), 'Are you getting a reference to the log window using `document.querySelector()`');
+    const onopen = logViewer.findPropertyAssignment('connection', 'onopen');
+    const onopenAssignmentMatch = {
+      "operator": "=",
+      "type": "AssignmentExpression"
+    }
+    assert(matchObj(onopen, onopenAssignmentMatch), 'Are you assigning a function handler to `connection.onopen`?');
 
-    // item.id = 'item-' + order;
-    // const onopen = logViewer.findPropertyAssignment('connection', 'onopen');
-    // const onopenMatch = {
-    //   'right.type': 'BinaryExpression',
-    //   'right.left.value': '()',
-    //   'right.operator': '=>',
-    //   'right.right.name': '{ connection.send("Hello from the client!") }'
-    // };
-    // assert(matchObj(onopen, onopenMatch), "Are you giving the `item` the `id` of `'item-' + order`?");
+    const onopenArrowFunction = { 
+      'right.type': 'ArrowFunctionExpression', 
+    };
+    const onopenHandlerFunction = { 
+      'right.type': 'FunctionExpression',
+    };
+    assert(matchObj(onopen, onopenArrowFunction) || matchObj(onopen, onopenHandlerFunction), 'Are you assigning a handler function to `connection.onopen`?');
 
-    // const onopen = logViewer.findPropertyAssignment('connection', 'onopen');
-    // // const onopen = logViewer.findFunction('onopen');
+    const onopenMatch = {
+      "right.body.body[0].expression.callee.object.name": "connection",
+      "right.body.body[0].expression.callee.property.name": "send"
+    }
+    assert(matchObj(onopen, onopenMatch), 'Are you calling `connection.send()` in the `connection.on` handler function?');
 
-    // const send = logViewer.findCall('send');
-    // const sendMatch = {
-    //   'callee.object.name': 'connection',
-    //   'callee.property.name': 'appendChild',
-    //   'arguments.0.name': 'Hello from the client!'
-    // };
-    // assert(matchObj(send, sendMatch), 'Are you appending `input` to `item`?');
-
+    const send = logViewer.findCall('send');
+    const sendMatch = {
+      'callee.object.name': 'connection',
+      'callee.property.name': 'send',
+      'arguments.0.value': 'Hello from the client!'
+    };
+    assert(matchObj(send, sendMatch), 'Are you sending the string `"Hello from the client!"` to the WebSocket server?');
   });
 });
