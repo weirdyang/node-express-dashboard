@@ -34,5 +34,5 @@ In `public/javascripts/log-viewer.js` after the `const` declarations, assign a f
 
 ## Display the returned message in the log window
 TASK 9: 
-In `public/javascripts/log-viewer.js` after the `connection.onopen` assignment, assign a function with a parameter called `event` to the `connection` object's `onmessage` [event handler property](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/onmessage). The function should set the `innerHTML` property of the `logWindow` element to a string of the value of the `data` property of the `event` parameter. Format the string with a `<br>` tag before and after `event.data`. 
+In `public/javascripts/log-viewer.js` after the `connection.onopen` assignment, assign a function with a parameter called `event` to the `connection` object's `onmessage` [event handler property](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/onmessage). The function should set the `innerHTML` property of the `logWindow` element to a string of the value of the `data` property of the `event` parameter. 
 

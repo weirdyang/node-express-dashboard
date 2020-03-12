@@ -3,7 +3,7 @@ const router = express.Router();
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
-  res.render("index", { title: "Log Dashboard" });
+  res.render("index", { title: "Log Dashboard", logFile: req.query.logFile });
 });
 
 module.exports = router;
