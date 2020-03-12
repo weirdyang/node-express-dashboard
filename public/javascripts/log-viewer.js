@@ -6,5 +6,5 @@ connection.onopen = () => {
 }
 
 connection.onmessage = (event) => {
-  logWindow.innerHTML = `<br>${event.data}<br>`
+  logWindow.innerHTML = event.data
 }
