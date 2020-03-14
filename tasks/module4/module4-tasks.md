@@ -30,9 +30,5 @@ In `bin/www` in the `ReadStream`'s `"data"` event handler, convert the `chunk` b
 ## Stream the log file to the client: send newest entries first
 In `bin/www` in the `ReadStream`'s `"data"` event handler, reverse the `logs` array using `array`'s `reverse()` function. Chain a call to `join()` on the reversed array to convert it back to a string. Join on new line characters, e.g. `"\n"` and assign it to the existing `logs` variable. Call `ws.send(logs)` to send the formatted logs back to the client.
 
-
-## Use the Node.js fs (File System) module to the stream the log file back to the client
-
-
-TASK 1:
-In `routers/index.ejs` inside the existing `<div>` with class `container` below the title header, add another `<div>` element with classes of `panel` and `panel-default`. The `panel` and `panel-default` classes along with all other CSS classes used in this project are [Bootstrap classes](https://www.w3schools.com/bootstrap/default.asp)
+## Display the logs in the log window
+In `public/javascripts/log-viewer.js` in the `connection.onmessage` function handler, do a find and replace on the `data.event` `string` replacing new lines (`\n`) with a horizontal rule HTML tag (`<hr>`) and assign it to a `const` called `logs`. Set `logWindow.innerHTML` to `logs`. Hint: you can use `string`'s `replace()` function with a regex, but building on what we did in `bin/www` use `split()` and `join()` instead, e.g. `str.split("\n").join("<hr>")`.
