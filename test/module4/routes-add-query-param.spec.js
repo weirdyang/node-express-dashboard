@@ -21,7 +21,7 @@ describe("routes/index.js", () => {
       "arguments.1.properties.1.value.object.property.name": "query",
       "arguments[1].properties[1].value.property.name": "logFile"
     };
-    assert(matchObj(render, renderMatch), 'Are you sending the string `"Hello from the client!"` to the WebSocket server?');
+    assert(matchObj(render, renderMatch), 'Are you adding a logFile property to the index route?');
     console.log(0)
   });
 });
