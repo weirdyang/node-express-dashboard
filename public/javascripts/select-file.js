@@ -1,6 +1,6 @@
-$(document).ready(function(){
+$(document).ready(() => {
   
-  const currentPath = null;
+  let currentPath = null;
   const options = {
     "paging": false,
     "autoWidth": false,
@@ -16,11 +16,11 @@ $(document).ready(function(){
 
   const table = $("#fileTable").DataTable(options);
 
-  function onRowCreated(row, data, dataIndex) {
+  function onRowCreated(row, data) {
     if (!data.isDirectory) return;
     const path = data.path;
-    $(row).bind("click", function(event){
-       $.get("/files?path=" + path).then(function(data){
+    $(row).bind("click", (event) => {
+       $.get("/files?path=" + path).then((data) => {
         table.clear();
         table.rows.add(data).draw();
         currentPath = path;
@@ -29,7 +29,7 @@ $(document).ready(function(){
     });
   }
 
-  function createRow(data, type, row, meta) {
+  function createRow(data) {
     if (data.isDirectory) {
       return "<a href='#' target='_blank'>" +
              "<span class='fa fa-folder'></span>&nbsp;" +
@@ -41,16 +41,16 @@ $(document).ready(function(){
     }
   }
 
-  $.get("/files").then(function(data){
+  $.get("/files").then((data) => {
     table.clear();
     table.rows.add(data).draw();
   });
 
-  $("#back").bind("click", function(e){
+  $("#back").bind("click", () => {
     if (!currentPath) return;
     const idx = currentPath.lastIndexOf("/");
     const path = currentPath.substr(0, idx);
-    $.get("/files?path="+ path).then(function(data){
+    $.get("/files?path="+ path).then((data) => {
       table.clear();
       table.rows.add(data).draw();
       currentPath = path;

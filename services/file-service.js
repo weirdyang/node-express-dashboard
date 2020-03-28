@@ -4,13 +4,13 @@ const path = require("path");
 
 let dir;
 
-exports.setcwd = function(cwd) {
+exports.setcwd = (cwd) => {
   dir = cwd;
 }
 
 function displayFiles(files, currentDir, query) {
   let data = [];
-  files.forEach(function (file) {
+  files.forEach((file) => {
     let isDirectory = fs.statSync(path.join(currentDir, file)).isDirectory();
     if (isDirectory) {
       data.push({
@@ -31,17 +31,17 @@ function displayFiles(files, currentDir, query) {
 }
 
 function readDir(currentDir, res, query) {
-  fs.readdir(currentDir, function (err, files) {
+  fs.readdir(currentDir, (err, files) => {
     let newDirectory = [];
     if (!err) {
       newDirectory = displayFiles(files, currentDir, query);
     }
-    res.json(_.sortBy(newDirectory, function(f) { return f.name }));
+    // res.json(_.sortBy(newDirectory, (file) => { return file.name }));
+    res.json(newDirectory)
   });
-
 }
 
-exports.get = function(req, res) {
+exports.get = (req, res) => {
   let currentDir = dir;
   let query = req.query.path || "";
   if (query) {

@@ -1,16 +1,18 @@
 const fs = require("fs");
 const path = require("path");
 
-const settingsData = fs.readFileSync(path.join(__dirname, "../json/settings.json"), "utf8");
-const settings = JSON.parse(settingsData);
+function getSettings() {
+  const settingsData = fs.readFileSync(path.join(__dirname, "../json/settings.json"), "utf8");
+  return JSON.parse(settingsData);
+}
 
-const writeSettings = () => {
-    let settingsJSON = JSON.stringify(settings, null, 2)
+function writeSettings(newSettings) {
+    let settingsJSON = JSON.stringify(newSettings, null, 2)
     fs.writeFileSync(path.join(__dirname, "../json/settings.json"), settingsJSON, "utf8");
 }
 
 function getDefaultDir() {
-  const defaultDir = settings.user.defaultDir
+  const defaultDir = getSettings().defaultDir
   if (!defaultDir) {
     return process.cwd()
   }
@@ -27,7 +29,7 @@ function isValidDir(dirPath) {
 }
 
 module.exports = {
-  settings,
+  getSettings,
   writeSettings,
   getDefaultDir,
   isValidDir

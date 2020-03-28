@@ -1,11 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const fileService = require("../services/file-service")
-const { settings, writeSettings, getDefaultDir, isValidDir } = require("../services/settings-service.js");
-const { check, validationResult } = require("express-validator");
+const { getSettings, writeSettings, getDefaultDir, isValidDir } = require("../services/settings-service.js");
+const { validationResult } = require("express-validator");
 const { body } = require("express-validator");
-
-fileService.setcwd(getDefaultDir());
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
@@ -14,18 +12,18 @@ router.get("/", function(req, res, next) {
 
 /* GET select file. */
 router.get("/select-file", function(req, res, next) {
+  fileService.setcwd(getDefaultDir());
   res.render("select-file", { title: "Select Log File" });
 });
 
 /* GET settings. */
 router.get("/settings", function(req, res, next) {
-  res.render("settings", { title: "Settings", settings });
+  res.render("settings", { title: "Settings", settings: getSettings() });
 });
 
 router.post("/settings", [
-  check("defaultDir").not().isEmpty(),
   body("defaultDir").custom(dirPath => {
-    if (!isValidDir(dirPath)) {
+    if (dirPath && !isValidDir(dirPath)) {
       throw new Error("Default directory is not valid")
     }
     return true
@@ -33,11 +31,11 @@ router.post("/settings", [
 ], function (req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.render("settings", { title: "Settings", errors: errors.array()[0], settings });
+    return res.render("settings", { title: "Settings", errors: errors.array()[0], settings: getSettings() });
   }
-  settings.user = req.body
-  writeSettings()
-  res.render("settings", { message: "Settings Saved", title: "Settings", settings });
+  // settings = req.body
+  writeSettings(req.body)
+  res.render("settings", { message: "Settings Saved", title: "Settings", settings: getSettings() });
 })
 
 /* GET files. */

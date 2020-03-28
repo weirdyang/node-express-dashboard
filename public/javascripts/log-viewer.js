@@ -13,7 +13,7 @@ connection.onerror = (error) => {
   console.log(`WebSocket error: ${error}`)
 }
 
-connection.onmessage = (e) => {
-  const logs = e.data.split("\n").join("<br>")
-  logWindow.innerHTML = `<br>${logs}<br>`
+connection.onmessage = (event) => {
+  const logs = event.data.split("\n").join("<hr>")
+  logWindow.innerHTML = logs
 }
