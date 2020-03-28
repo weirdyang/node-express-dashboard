@@ -12,19 +12,19 @@ var count = 0
 fs.writeFileSync(path.join(__dirname, "./sample.log"), sourceLogs[index++], "utf8");
 
 setInterval(() => {
-if (count === 50) { // This simulates log rotation
-  count = 0
-  if (index === sourceLogs.length) {
-    index = 0 // start at the beginning of the file
-  }
-  fs.writeFileSync(path.join(__dirname, "./sample.log"), sourceLogs[index++], "utf8");
-  return
-}
-const logs = fs.readFileSync(path.join(__dirname, "./sample.log"), "utf8");
-if (index === sourceLogs.length) {
-  index = 0 // start at the beginning of the file
-}
-fs.writeFileSync(path.join(__dirname, "./sample.log"), logs + "\n" + sourceLogs[index++], "utf8");
-count++
+    if (count === 50) { // This simulates log rotation
+        count = 0
+        if (index === sourceLogs.length) {
+            index = 0 // start at the beginning of the file
+        }
+        fs.writeFileSync(path.join(__dirname, "./sample.log"), sourceLogs[index++], "utf8");
+        return
+    }
+    const logs = fs.readFileSync(path.join(__dirname, "./sample.log"), "utf8");
+    if (index === sourceLogs.length) {
+        index = 0 // start at the beginning of the file
+    }
+    fs.writeFileSync(path.join(__dirname, "./sample.log"), logs + "\n" + sourceLogs[index++], "utf8");
+    count++
 }, 2000);
 

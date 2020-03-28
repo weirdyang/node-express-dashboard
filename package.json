@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "DEBUG=log-dashboard:server node ./bin/www & node ./log-generator/log-generator.js",
-    "test": "cross-env NODE_ENV=test mocha --exit './test/**/*.spec.js' || true"
+    "test:module2": "cross-env NODE_ENV=test mocha --exit './test/module2/*.spec.js' || true",
+    "test:module3": "cross-env NODE_ENV=test mocha --exit './test/module3/*.spec.js' || true",
+    "test:module4": "cross-env NODE_ENV=test mocha --exit './test/module4/*.spec.js' || true"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -15,29 +17,24 @@
     "http-errors": "~1.6.3",
     "lodash": "^4.17.15",
     "morgan": "~1.9.1",
-    "ws": "^7.2.0"
+    "ws": "^7.2.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "cross-env": "^6.0.3",
-    "mocha": "^6.2.2",
+    "cheerio": "^1.0.0-rc.3",
+    "cross-env": "^7.0.0",
+    "dot-object": "^2.1.3",
+    "jscodeshift": "^0.7.0",
+    "mocha": "^7.0.1",
     "rewire": "^4.0.1",
-    "sinon": "^7.5.0",
-    "sinon-chai": "^3.3.0",
-    "sinon-express-mock": "^2.2.1",
-    "supertest": "^4.0.2",
-    "ramda": "0.27.0"
+    "sinon": "^8.1.1",
+    "sinon-chai": "^3.4.0",
+    "sinon-express-mock": "^2.2.1"
   },
   "mocha": {
     "require": "./test/globals",
-    "exit": true,
-    "diff": true,
-    "opts": false,
-    "reporter": "spec",
-    "timeout": 10000,
     "ui": "bdd",
-    "watch-files": [
-      "./test/**/*.spec.js"
-    ]
+    "exit": true,
+    "timeout": 10000
   }
 }
