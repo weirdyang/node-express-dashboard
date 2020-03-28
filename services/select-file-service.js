@@ -1,13 +1,10 @@
 const path = require("path");
+const fs = require("fs")
 
-let dir;
-
-exports.setcwd = (cwd) => {
-  dir = cwd;
-}
+const dir = process.cwd()
 
 function getDirectoryContents(files, currentDir, query) {
-  let data = [];
+  const data = [];
   files.forEach((file) => {
     if (isDirectory(currentDir, file)) {
       data.push({
@@ -20,7 +17,7 @@ function getDirectoryContents(files, currentDir, query) {
         name : file,
         isDirectory: false,
         path : path.join(query, file),
-        currentDir: currentDir
+        currentDir
       });
     }
   });
@@ -28,16 +25,23 @@ function getDirectoryContents(files, currentDir, query) {
 }
 
 function isDirectory(currentDir, file) {
-  return false
+  const fileInfo = fs.statSync(path.join(currentDir, file))
+  return fileInfo.isDirectory()
 }
 
 function readDir(currentDir, res, query) {
-  return []
+  fs.readdir(currentDir, (err, files) => {
+    let directoryContents = [];
+    if (!err) {
+      directoryContents = getDirectoryContents(files, currentDir, query);
+    }
+    res.json(directoryContents)
+  });
 }
 
 exports.get = (req, res) => {
   let currentDir = dir;
-  let query = req.query.path || "";
+  const query = req.query.path || "";
   if (query) {
     currentDir = path.join(currentDir, query)
   } 
