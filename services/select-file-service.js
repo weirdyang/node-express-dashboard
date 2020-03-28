@@ -8,7 +8,7 @@ exports.setcwd = (cwd) => {
 }
 
 function getDirectoryContents(files, currentDir, query) {
-  let data = [];
+  const data = [];
   files.forEach((file) => {
     if (isDirectory(currentDir, file)) {
       data.push({
@@ -21,7 +21,7 @@ function getDirectoryContents(files, currentDir, query) {
         name : file,
         isDirectory: false,
         path : path.join(query, file),
-        currentDir: currentDir
+        currentDir
       });
     }
   });
@@ -45,7 +45,7 @@ function readDir(currentDir, res, query) {
 
 exports.get = (req, res) => {
   let currentDir = dir;
-  let query = req.query.path || "";
+  const query = req.query.path || "";
   if (query) {
     currentDir = path.join(currentDir, query)
   } 

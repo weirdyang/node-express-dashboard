@@ -6,18 +6,18 @@ const { validationResult } = require("express-validator");
 const { body } = require("express-validator");
 
 /* GET home page. */
-router.get("/", function(req, res, next) {
+router.get("/", (req, res, next) => {
   res.render("index", { title: "Log Dashboard", logFile: req.query.logFile });
 });
 
 /* GET select file. */
-router.get("/select-file", function(req, res, next) {
+router.get("/select-file", (req, res, next) => {
   fileService.setcwd(getDefaultDir());
   res.render("select-file", { title: "Select Log File" });
 });
 
 /* GET settings. */
-router.get("/settings", function(req, res, next) {
+router.get("/settings", (req, res, next) => {
   res.render("settings", { title: "Settings", settings: getSettings() });
 });
 
@@ -28,7 +28,7 @@ router.post("/settings", [
     }
     return true
   })
-], function (req, res) {
+], (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.render("settings", { 
@@ -48,6 +48,6 @@ router.post("/settings", [
 })
 
 /* GET files. */
-router.get("/files", fileService.get)
+router.get("/files", (req, res) => fileService.get(req, res))
 
 module.exports = router;
