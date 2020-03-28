@@ -40,7 +40,8 @@ wss.on("connection", (ws) => {
     fs.watch(filePath, () => {
       fs.createReadStream(filePath).on("data", chunk => {
         let logs = chunk.toString().split("\n")
-        if (getSettings().filter) {
+        const settings = getSettings()
+        if (settings.filter) {
           logs = logs.filter(line => !line.includes(settings.filter))
         }
         logs = logs.reverse().join("\n")
