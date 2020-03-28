@@ -36,7 +36,6 @@ function readDir(currentDir, res, query) {
     if (!err) {
       newDirectory = displayFiles(files, currentDir, query);
     }
-    // res.json(_.sortBy(newDirectory, (file) => { return file.name }));
     res.json(newDirectory)
   });
 }
