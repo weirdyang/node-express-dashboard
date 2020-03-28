@@ -8,11 +8,10 @@ exports.setcwd = (cwd) => {
   dir = cwd;
 }
 
-function displayFiles(files, currentDir, query) {
+function getDirectoryContents(files, currentDir, query) {
   let data = [];
   files.forEach((file) => {
-    let isDirectory = fs.statSync(path.join(currentDir, file)).isDirectory();
-    if (isDirectory) {
+    if (isDirectory(currentDir, file)) {
       data.push({
         name : file,
         isDirectory: true,
@@ -30,13 +29,18 @@ function displayFiles(files, currentDir, query) {
   return data;
 }
 
+function isDirectory(currentDir, file) {
+  const fileInfo = fs.statSync(path.join(currentDir, file))
+  return fileInfo.isDirectory()
+}
+
 function readDir(currentDir, res, query) {
   fs.readdir(currentDir, (err, files) => {
-    let newDirectory = [];
+    let directoryContents = [];
     if (!err) {
-      newDirectory = displayFiles(files, currentDir, query);
+      directoryContents = getDirectoryContents(files, currentDir, query);
     }
-    res.json(newDirectory)
+    res.json(directoryContents)
   });
 }
 

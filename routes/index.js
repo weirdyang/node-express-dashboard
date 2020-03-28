@@ -31,11 +31,20 @@ router.post("/settings", [
 ], function (req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.render("settings", { title: "Settings", errors: errors.array()[0], settings: getSettings() });
+    return res.render("settings", { 
+      title: "Settings", 
+      errors: errors.array()[0].msg, 
+      settings: getSettings() 
+    });
   }
-  // settings = req.body
-  writeSettings(req.body)
-  res.render("settings", { message: "Settings Saved", title: "Settings", settings: getSettings() });
+
+  const saved = writeSettings(req.body)
+  res.render("settings", { 
+    message: saved ? "Settings Saved" : "", 
+    errors: saved ? "" : "Settings not saved",
+    title: "Settings", 
+    settings: getSettings() 
+  });
 })
 
 /* GET files. */

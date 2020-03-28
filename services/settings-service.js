@@ -7,8 +7,13 @@ function getSettings() {
 }
 
 function writeSettings(newSettings) {
-    let settingsJSON = JSON.stringify(newSettings, null, 2)
+  let settingsJSON = JSON.stringify(newSettings, null, 2)
+  try {
     fs.writeFileSync(path.join(__dirname, "../json/settings.json"), settingsJSON, "utf8");
+    return true
+  } catch {
+    return false
+  }
 }
 
 function getDefaultDir() {
