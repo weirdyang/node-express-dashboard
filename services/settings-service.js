@@ -1,15 +1,17 @@
 const fs = require("fs");
 const path = require("path");
 
+const settingsFilePath = path.join(__dirname, "../json/settings.json")
+
 function getSettings() {
-  const settingsData = fs.readFileSync(path.join(__dirname, "../json/settings.json"), "utf8");
+  const settingsData = fs.readFileSync(settingsFilePath);
   return JSON.parse(settingsData);
 }
 
 function writeSettings(newSettings) {
-  let settingsJSON = JSON.stringify(newSettings, null, 2)
+  const settingsJSON = JSON.stringify(newSettings, null, 2)
   try {
-    fs.writeFileSync(path.join(__dirname, "../json/settings.json"), settingsJSON, "utf8");
+    fs.writeFileSync(settingsFilePath, settingsJSON);
     return true
   } catch {
     return false
