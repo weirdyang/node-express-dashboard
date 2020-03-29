@@ -1,8 +1,9 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require("fs")
+const path = require("path")
 
 function getSettings() {
-  return {}
+  const settingsData = fs.readFileSync(path.join(__dirname, "../json/settings.json"))
+  return JSON.parse(settingsData)
 }
 
 function writeSettings(newSettings) {
