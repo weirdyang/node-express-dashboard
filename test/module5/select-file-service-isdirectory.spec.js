@@ -2,7 +2,7 @@ describe('services/select-file-service.js', () => {
   const source = fs.readFileSync(path.join(process.cwd(), 'services/select-file-service.js'), 'utf8');
   const selectFileService = jscs(source);
 
-  it('should contain fs and path require @select-file-service-require', () => {
+  it('should contain fs and path require @select-file-service-isdirectory', () => {
     const isDirectory = selectFileService.findFunction("isDirectory")
     const fileInfo = isDirectory.findVariable("fileInfo")
 
@@ -15,7 +15,7 @@ describe('services/select-file-service.js', () => {
       "init.arguments[0].original.callee.property.name": "join"
     }
     assert(fileInfo.length && matchObj(fileInfo, fileInfoMatch),
-      "Are you importing `path` and assigning it to a `const` named `path`")
+      "Are you assigning the result of `fs.statSync()` to a `const` named `fileInfo`?")
 
     const returnStatement = isDirectory.findReturn()
     const returnStatementMatch = {
@@ -23,6 +23,6 @@ describe('services/select-file-service.js', () => {
       "argument.callee.property.name": "isDirectory"
     }
     assert(returnStatement.length && matchObj(returnStatement, returnStatementMatch),
-      "it no worky")
+      "Are you returning `fileInfo.isDirectory()`?")
   });
 });
