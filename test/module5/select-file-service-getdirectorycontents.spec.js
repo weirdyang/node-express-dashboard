@@ -22,11 +22,6 @@ describe('services/select-file-service.js', () => {
       "Are you calling `forEach()` on the `files` parameter?")
 
     const ifStatement = filesForEach.findIf()
-    const ifStatementMatch = {
-      "test.callee.name": "isDirectory",
-      "test.arguments[0].name": "currentDir",
-      "test.arguments[1].name": "file"
-    }
     assert(
       ifStatement 
       && ifStatement.test.callee.name === "isDirectory" 
