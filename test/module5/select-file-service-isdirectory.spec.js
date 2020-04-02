@@ -2,7 +2,7 @@ describe('services/select-file-service.js', () => {
   const source = fs.readFileSync(path.join(process.cwd(), 'services/select-file-service.js'), 'utf8');
   const selectFileService = jscs(source);
 
-  it('should contain fs and path require @select-file-service-isdirectory', () => {
+  it('should implement isDirectory() @select-file-service-isdirectory', () => {
     const isDirectory = selectFileService.findFunction("isDirectory")
     const fileInfo = isDirectory.findVariable("fileInfo")
 
