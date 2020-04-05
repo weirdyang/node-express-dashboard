@@ -13,7 +13,7 @@ describe('services/settings-service.js', () => {
       "arguments[0].name": "dirPath",
     }
     assert(readDirSync.length && matchObj(readDirSync, readDirSyncMatch),
-    "Are you writing the settings file using `fs.writeFileSync`?")
+    "Are you checking if the directory is valid using `fs.readdirSync()`?")
 
     const tryReturn = tryStatement.findReturn()
     assert(tryReturn.length && tryReturn.__paths[0].node.argument.value === true,

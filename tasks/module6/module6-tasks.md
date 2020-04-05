@@ -18,7 +18,7 @@ In `services/settings-service.js` implement the `isValidDir()` function. Inside 
 ## Implement the `getDefaultDir()` function
 In `services/settings-service.js` implement the `getDefaultDir()` function. Do this by leveraging the `getSettings()` function and referencing its `defaultDir` property and assign that to a `const` called `defaultDir`. Then, to account for the case where the `defaultDir` is empty, check if `defaultDir` is falsy and, if so, return `process.cwd()`. Otherwise use a ternary operator to determine if `defaultDir` is valid using `isValidDir()` and if so return `defaultDir` otherwise return `process.cwd()`. Start the app and visit the [settings page](http://localhost:3000/settings). Try entering an invalid directory path and click the Submit button. You should see an error saying the default directory is not valid. Now enter a valid directory path and submit. You should see a success message and the valid default directory should be displayed.
 
-## Add an export for setting the current directory in select file service
+## Add export for setting the current directory in select file service
 In `services/select-file-service.js` add a property called `setcwd` to the global `exports` object and assign it to a function. The function parameter should be named `cwd`. Inside the function assign the `dir` variable to the `cwd` parameter.
 
 ## Import the `getDefaultDir` function from settings service
