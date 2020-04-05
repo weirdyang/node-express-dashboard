@@ -12,15 +12,29 @@ describe('services/settings-service.js', () => {
       "init.arguments[0].name": "newSettings"
     }
     assert(settingsJson.length && matchObj(settingsJson, settingsJsonMatch),
-      "Are you reading the settings file into a `const` called `settingsData`?")
+      "Are you parsing the settings object to a JSON string and assigning to `settingsJSON`?")
 
-    const writeFileSync = writeSettings.findCall("writeFileSync")
+    const tryStatement = writeSettings.find(jscs.TryStatement)
+    assert(tryStatement.length, "Are you using a `try` block?")
+
+    const writeFileSync = tryStatement.findCall("writeFileSync")
     const writeFileSyncMatch = {
-      "argument.callee.object.name": "JSON",
-      "argument.callee.property.name": "parse",
-      "argument.arguments[0].name": "settingsData"
+      "callee.object.name": "fs",
+      "arguments[0].name": "settingsFilePath",
+      "arguments[1].name": "settingsJSON"
     }
-    assert(returnStatement.length && matchObj(returnStatement, returnStatementMatch),
-      "Are you returning the parsed settings file?")
+    assert(writeFileSync.length && matchObj(writeFileSync, writeFileSyncMatch),
+    "Are you writing the settings file using `fs.writeFileSync`?")
+
+    const tryReturn = tryStatement.findReturn()
+    assert(tryReturn.length && tryReturn.__paths[0].node.argument.value === true,
+      "Are you returning true after `fs.writeFileSync`?")
+
+    const catchStatement = writeSettings.find(jscs.CatchClause)
+    assert(catchStatement.length, "Did you forget the `catch` clause?")
+
+    const catchReturn = catchStatement.findReturn()
+    assert(catchReturn.length && catchReturn.__paths[0].node.argument.value === false,
+      "Are you returning `false` in the `catch` clause?")
   });
 });
