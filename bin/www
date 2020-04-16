@@ -39,13 +39,13 @@ wss.on("connection", (ws) => {
   ws.on("message", (filePath) => {
     fs.watch(filePath, () => {
       fs.createReadStream(filePath).on("data", chunk => {
-        let logs = chunk.toString().split("\n")
+        let logsArr = chunk.toString().split("\n")
         const settings = getSettings()
         if (settings.filter) {
-          logs = logs.filter(line => !line.includes(settings.filter))
+          logsArr = logsArr.filter(line => !line.includes(settings.filter))
         }
-        logs = logs.reverse().join("\n")
-        ws.send(logs)
+        let logsStr = logsArr.reverse().join("\n")
+        ws.send(logsStr)
       })
     })
   });
