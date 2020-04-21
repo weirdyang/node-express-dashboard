@@ -1,5 +1,5 @@
 describe('bin/www', () => {
-  it('should contain ws "message" listener @www-register-message-listener', () => {
+  it('should contain ws `message` listener @www-register-message-listener', () => {
     const connection = ast.findLiteral('connection');
     try {
       connection.findCall("on")
