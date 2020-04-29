@@ -11,7 +11,16 @@ describe('services/settings-service.js', () => {
       "init.arguments[0].name": "__dirname",
       "init.arguments[1].value": "../json/settings.json"
     }
-    assert(settingsFilePath.length && matchObj(settingsFilePath, pathMatch),
+
+    const pathMatchConcat = {
+      "init.callee.object.name": "path",
+      "init.callee.property.name" : "join",
+      "init.arguments[0].left.name": "__dirname",
+      "init.arguments[0].operator": "+",
+      "init.arguments[0].right.value": "../json/settings.json"
+    }
+
+    assert(settingsFilePath.length && (matchObj(settingsFilePath, pathMatch) || matchObj(settingsFilePath, pathMatchConcat)),
       "Are you setting the `settingsFilePath` `const` as the settings json file?")
   });
 });
