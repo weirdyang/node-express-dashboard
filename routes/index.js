@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const fileService = require("../services/select-file-service")
-const { getSettings, writeSettings, getDefaultDir, isValidDir } = require("../services/settings-service.js");
+const { getDefaultDir, getSettings, writeSettings, isValidDir } = require("../services/settings-service.js");
 const { validationResult } = require("express-validator");
 const { body } = require("express-validator");
 
@@ -17,7 +17,7 @@ router.get("/select-file", (req, res, next) => {
 });
 
 /* GET settings. */
-router.get("/settings", (req, res, next) => {
+router.get("/settings", (req, res, next) =>  {
   res.render("settings", { title: "Settings", settings: getSettings() });
 });
 
