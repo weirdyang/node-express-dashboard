@@ -1,5 +1,5 @@
 $(document).ready(() => {
-  
+  const osPathSeparator = navigator.appVersion.indexOf("Win") != -1 ? "\\" : "/"
   let currentPath = null;
   const options = {
     "paging": false,
@@ -35,7 +35,7 @@ $(document).ready(() => {
              "<span class='fa fa-folder'></span>&nbsp;" +
              data.name +"</a>";
     } else {
-      return "<a href='/?logFile=" + data.currentDir + "/" + data.path.substr(data.path.lastIndexOf("/") + 1, data.path.length) +
+      return "<a href='/?logFile=" + data.currentDir + osPathSeparator + data.path.substr(data.path.lastIndexOf(osPathSeparator) + 1, data.path.length) +
              "' target='_blank'><span class='fa fa-file-o'></span>&nbsp;" +
              data.name +"</a>";
     }
