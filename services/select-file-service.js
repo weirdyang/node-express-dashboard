@@ -4,7 +4,11 @@
 const fs = require('fs');
 const path = require('path');
 
-const dir = process.cwd();
+let dir = process.cwd();
+
+exports.setcwd = (cwd) => {
+  dir = cwd;
+};
 
 function isDirectory(currentDir, file) {
   const fileInfo = fs.statSync(

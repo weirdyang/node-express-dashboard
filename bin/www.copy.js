@@ -7,7 +7,7 @@ const debug = require('debug')('log-dashboard:server');
 const http = require('http');
 const WebSocket = require('ws');
 const fs = require('fs');
-
+const { getSettings } = require('../services/settings-service');
 /**
  * Get port from environment and store in Express.
  */
@@ -35,7 +35,15 @@ wss.on('connection', (ws) => {
   ws.on('message', (filePath) => {
     fs.watch(filePath, () => {
       fs.createReadStream(filePath).on('data', (chunk) => {
-        const logsArr = chunk.toString().split('\n');
+        let logsArr = chunk.toString().split('\n');
+        const settings = getSettings();
+        // On the line right after, check if settings.filter is truthy,
+        // if so, exclude log entries in logsArr that include the value of settings.filter.
+        // Assign this back to logsArr
+        if (settings.filter) {
+          logsArr = logsArr.filter((line) => !line.includes(settings.filter));
+        }
+
         const logsStr = logsArr.reverse().join('\n');
         ws.send(logsStr);
       });
