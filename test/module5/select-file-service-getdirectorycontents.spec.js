@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 describe('services/select-file-service.js', () => {
   const source = fs.readFileSync(path.join(process.cwd(), 'services/select-file-service.js'), 'utf8');
   const selectFileService = jscs(source);
@@ -46,9 +47,6 @@ describe('services/select-file-service.js', () => {
       && arrPush.__paths[0].node.arguments[0].original.properties[2].value.arguments[1].name === 'file',
       'Are you pushing an directory oject if the file is a directory?',
     );
-    arrPush.__paths[1].node.arguments[0].properties.forEach((property) => {
-      console.log(property);
-    });
     assert(
       arrPush.__paths[1].node.arguments[0].properties[0].key.name === 'name'
       && arrPush.__paths[1].node.arguments[0].properties[0].value.name === 'file'
