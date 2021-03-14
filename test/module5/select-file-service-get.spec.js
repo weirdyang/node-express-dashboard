@@ -7,7 +7,7 @@ describe('services/select-file-service.js', () => {
     const currentDir = get.findVariable("currentDir")
     assert(currentDir.length && currentDir.__paths[0].node.init.name === "dir",
       "Are you assigning the `dir` parameter to a variable named `currentDir`?")
-    
+
     const query = get.findVariable("query")
     const queryMatch = {
       "init.operator": "||",
@@ -30,7 +30,7 @@ describe('services/select-file-service.js', () => {
 
     const ifStatement = get.findIf()
     assert(
-      ifStatement 
+      ifStatement
       && ifStatement.consequent.body[0].expression.left.name === "currentDir"
       && ifStatement.consequent.body[0].expression.right.callee.object.name === "path"
       && ifStatement.consequent.body[0].expression.right.callee.property.name === "join"

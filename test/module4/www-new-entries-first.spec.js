@@ -15,7 +15,7 @@ describe('bin/www', () => {
       "callee.object.callee.object.name": "logsArr",
       "arguments[0].value": "\n"
     };
-    assert(matchObj(logs, logsMatch), 
+    assert(matchObj(logs, logsMatch),
       'Are you reversing the `logsArr` array and converting it back to a `string` with newline delimiters?');
 
     const send = onData.findCall('send');

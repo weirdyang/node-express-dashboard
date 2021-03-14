@@ -5,7 +5,7 @@ describe('log-viewer.js', () => {
 
     const source = fs.readFileSync(path.join(process.cwd(), 'public/javascripts/log-viewer.js'), 'utf8');
     const logViewer = jscs(source);
-    
+
     const logFilePath = logViewer.findVariable('filePath');
     const logFilePathMatch = {
       'init.object.callee.object.name': 'document',
@@ -13,7 +13,7 @@ describe('log-viewer.js', () => {
       'init.object.arguments.0.value': 'logFilePath',
       'init.property.name': "value"
     };
-    assert(matchObj(logFilePath, logFilePathMatch), 
+    assert(matchObj(logFilePath, logFilePathMatch),
       'Are you getting a reference to the logFilePath input field value using `document.getElementById()` to query?');
   });
 });

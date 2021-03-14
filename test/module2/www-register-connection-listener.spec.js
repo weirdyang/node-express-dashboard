@@ -7,11 +7,11 @@ describe('bin/www', () => {
     };
     assert(matchObj(connection, wssOnMatch), 'Are you adding an `on` event listener to `wss` that listens for the `connection` event?');
 
-    const connection_handler_arrow = { 
+    const connection_handler_arrow = {
       'arguments.1.type': 'ArrowFunctionExpression',
       'arguments.1.params.0.name': 'ws'
     };
-    const connection_handler_function = { 
+    const connection_handler_function = {
       'arguments.1.type': 'FunctionExpression',
       'arguments.1.params.0.name': 'ws'
     };

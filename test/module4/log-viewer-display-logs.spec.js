@@ -5,9 +5,9 @@ describe('log-viewer.js', () => {
 
     const source = fs.readFileSync(path.join(process.cwd(), 'public/javascripts/log-viewer.js'), 'utf8');
     const logViewer = jscs(source);
-    
+
     const onmessage = logViewer.findPropertyAssignment('connection', 'onmessage');
-    assert(onmessage.length, 
+    assert(onmessage.length,
       'Are you assigning a function handler to `connection.onmessage` with an `event` param?')
 
     const eventData = onmessage.findCall("join")
@@ -26,7 +26,7 @@ describe('log-viewer.js', () => {
       "right.body.body[1].expression.left.property.name": "innerHTML",
       "right.body.body[1].expression.right.name" : "logs"
     }
-    assert(matchObj(onmessage, onmessageMatch), 
+    assert(matchObj(onmessage, onmessageMatch),
       'Are you setting the `innerHTML` property of `logWindow` to `logs`?');
   });
 });

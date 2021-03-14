@@ -5,7 +5,7 @@ describe('log-viewer.js', () => {
 
     const source = fs.readFileSync(path.join(process.cwd(), 'public/javascripts/log-viewer.js'), 'utf8');
     const logViewer = jscs(source);
-    
+
     const onopen = logViewer.findPropertyAssignment('connection', 'onopen');
     const onopenAssignmentMatch = {
       "operator": "=",
@@ -13,10 +13,10 @@ describe('log-viewer.js', () => {
     }
     assert(matchObj(onopen, onopenAssignmentMatch), 'Are you assigning a function handler to `connection.onopen`?');
 
-    const onopenArrowFunction = { 
-      'right.type': 'ArrowFunctionExpression', 
+    const onopenArrowFunction = {
+      'right.type': 'ArrowFunctionExpression',
     };
-    const onopenHandlerFunction = { 
+    const onopenHandlerFunction = {
       'right.type': 'FunctionExpression',
     };
     assert(matchObj(onopen, onopenArrowFunction) || matchObj(onopen, onopenHandlerFunction), 'Are you assigning a handler function to `connection.onopen`?');

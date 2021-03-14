@@ -17,7 +17,7 @@ describe('bin/www', () => {
       "init.callee.property.name": "split",
       "init.arguments[0].value": "\n"
     };
-    assert(matchObj(logs, logsMatch), 
+    assert(matchObj(logs, logsMatch),
       'Are you splitting `chunk` on newlines ("\n") and assigning the array to a `let` binding called `logsArr`');
   });
 });

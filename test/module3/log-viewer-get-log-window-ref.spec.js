@@ -5,7 +5,7 @@ describe('log-viewer.js', () => {
 
     const source = fs.readFileSync(path.join(process.cwd(), 'public/javascripts/log-viewer.js'), 'utf8');
     const logViewer = jscs(source);
-    
+
     const logWindow = logViewer.findVariable('logWindow');
     const logWindowMatch = {
       'init.callee.object.name': 'document',

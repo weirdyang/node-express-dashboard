@@ -15,7 +15,7 @@ describe('bin/www', () => {
     };
     assert(matchObj(message, messageMatch),
       'Are you adding an `on` event listener to `ws` that listens for the `message` event?');
-    
+
     const messageArrowFunction = {
       'arguments.1.type': 'ArrowFunctionExpression',
       'arguments.1.params.0.name': 'filePath'
@@ -43,7 +43,7 @@ describe('bin/www', () => {
       "callee.object.arguments[0].name": "filePath",
       "arguments[0].value": "data",
     };
-    
+
     assert(onData && matchObj(onData, onDataMatch),
       'Did you register an event handler for the `ReadStream` instance\'s `"data"` event?')
 
