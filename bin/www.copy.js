@@ -31,18 +31,17 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 wss.on('connection', (ws) => {
-  // console.log(ws);
+  console.log(ws);
   ws.on('message', (filePath) => {
     fs.watch(filePath, () => {
       fs.createReadStream(filePath).on('data', (chunk) => {
         const logsArr = chunk.toString().split('\n');
         const logsStr = logsArr.reverse().join('\n');
-        console.log(logsStr);
         ws.send(logsStr);
       });
     });
 
-    // ws.send(`Hello from the server! you sent: ${filePath}`);
+    ws.send(`Hello from the server! you sent: ${filePath}`);
   });
 });
 /**
